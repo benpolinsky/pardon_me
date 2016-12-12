@@ -22,5 +22,6 @@ if (!defined('ABSPATH')) exit;
 define( 'PARDON_ME_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
 # Set it off: 
-require_once( PARDON_ME_PLUGIN_DIR . 'index.php' );
+require_once( PARDON_ME_PLUGIN_DIR . 'pm-admin-pages.php' );
+require_once( PARDON_ME_PLUGIN_DIR . 'pm-shortcodes.php' );
 ?>

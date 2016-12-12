@@ -7,7 +7,13 @@ if (empty(get_option('pm_pardot_api_key'))) {
 
 # ---Add Admin Main Page---
 function pm_add_admin_main_page(){
-	add_menu_page('Pardon Me', "Pardon Me", 'manage_options', 'pardon-me-admin', 'pm_main_page', 'dashicons-admin-network');
+	add_menu_page('Pardon Me', 
+		"Pardon Me", 
+		'manage_options', 
+		'pardon-me-admin', 
+		'pm_main_page', 
+		'dashicons-admin-network'
+	);
 }
 
 function pm_main_page(){
