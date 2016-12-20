@@ -1,0 +1,9 @@
+form.pardot-settings label{
+  width: 200px;
+  display:block;
+}
+
+form.pardot-settings input{
+  width: 400px;
+  display:block;
+}

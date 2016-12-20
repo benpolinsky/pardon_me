@@ -70,17 +70,27 @@ function pm_settings_page(){
 	
 	$content = "";
 	
-	$api_key_name = 'pm_pardot_api_key';	
+	$pardot_userkey_name = 'pm_pardot_api_key';	
+	$pardot_userkey_value = get_option($pardot_userkey_name);
+	
+	$pardot_email_name = 'pm_pardot_email';	
+	$pardot_email = get_option($pardot_email_name);
 
-	$api_key_value = get_option($api_key_name);
+	$pardot_password_name = 'pm_pardot_password';	
+	$pardot_password = get_option($pardot_password_name);
 
 	$hidden_field_name = 'pm_submit_hidden';
 
 	# If we've already gotten some info via post,
 	# we'll update our option
 	if (isset($_POST[$hidden_field_name]) && $_POST[$hidden_field_name] == 'Y') {
-		$api_key_value = $_POST[$api_key_name];
-		update_option($api_key_name, $api_key_value);
+		$pardot_userkey_value = $_POST[$pardot_userkey_name];
+		$pardot_email = $_POST[$pardot_email_name];
+		$pardot_password = $_POST[$pardot_password_name];
+		
+		update_option($pardot_userkey_name, $pardot_userkey_value);
+		update_option($pardot_email_name, $pardot_email);
+		update_option($pardot_password_name, $pardot_password);
 		
 		$settings_saved = __('Settings Saved.', 'menu-test');
 		$content .= "<div class='updated'><p><strong>$settings_saved</strong></p></div>";
@@ -88,16 +98,26 @@ function pm_settings_page(){
 	
 	$content .= "<div class='wrap'>";
 	$content .= "<h2>";
-	$content .= __('Menu Test Plugin Settings', 'menu-test');
+	$content .= __('Pardon Me Settings', 'menu-test');
 	$content .= "</h2>";
 	
 	# Form
 	
-	$content .= "<form name='form1' method='post' action=''>";
+	$content .= "<form class='pardot-settings' name='pardot-settings' method='post' action=''>";
 	$content .= "<input type='hidden' name='$hidden_field_name' value='Y' />";
-	$content .= "<p>Favorite Color:";
-	$content .= "<input type='text' name='$api_key_name' value='$api_key_value' size='20' />";
+	
+	$content .= "<p><label for='$pardot_userkey_name'>Pardot User Key:</label>";
+	$content .= "<input type='text' name='$pardot_userkey_name' value='$pardot_userkey_value' size='20' />";
 	$content .= "</p> <hr />";
+	
+	$content .= "<p><label for='$pardot_email_name'>Pardot Email:</label>";
+	$content .= "<input type='text' name='$pardot_email_name' value='$pardot_email' size='20' />";
+	$content .= "</p> <hr />";
+	
+	$content .= "<p><label for='$pardot_password_name'>Pardot Password:</label>";
+	$content .= "<input type='text' name='$pardot_password_name' value='$pardot_password' size='20' />";
+	$content .= "</p> <hr />";
+	
 	$content .= "<p class='submit'>";
 	$content .= "<input type='submit' name='Submit' class='button-primary' value='Save Changes' />";
 	$content .= "</p>";
