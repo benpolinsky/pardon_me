@@ -1,7 +1,5 @@
 # December 20 Pardot Brainstorms
 
-- didnt see: 
-character limit on thank you content, is it after you submit?
 
 Whitepapers are located on Pardot.
 
