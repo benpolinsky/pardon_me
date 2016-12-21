@@ -29,6 +29,7 @@ define( 'PARDON_ME_STYLES_URL', PARDON_ME_ASSETS_URL . '/styles' );
 
 require_once( PARDON_ME_PLUGIN_DIR . 'class.pardon_me.php' );
 require_once( PARDON_ME_PLUGIN_DIR . 'pm-admin-pages.php' );
+require_once( PARDON_ME_PLUGIN_DIR . 'pm-admin-settings.php' );
 require_once( PARDON_ME_PLUGIN_DIR . 'pm-shortcodes.php' );
 require_once( PARDON_ME_PLUGIN_DIR . 'pm-template-tags.php' );
 
@@ -43,11 +44,18 @@ add_action('admin_enqueue_scripts', 'bp_gather_scripts');
 ?>
 
 <?php
-# Testing
-$pkey = get_option('pm_pardot_api_key');
-$pemail = get_option('pm_pardot_email');
-$ppass = get_option('pm_pardot_password');	
-$me = new PardonMeAPI($pemail, $ppass, $pkey);
-echo $me->authenticate();
+	# Testing
+	$pkey = get_option('pm_pardot_api_key');
+	$pemail = get_option('pm_pardot_email');
+	$ppass = get_option('pm_pardot_password');	
+	
+	$me = new PardonMeAPI($pemail, $ppass, $pkey);
+	$visitor_id = $me->current_visitor_id($_COOKIE);
+	$me->has_filled_out_form();
+	# print_r($me->get_competitors());
+	# echo '<pre>';
+	# print_r($me->get_campaigns());
+	# echo '</pre>';
+		
 # $response = $me->data();
 ?>
